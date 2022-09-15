@@ -2,15 +2,18 @@ package com.example.lab06service.view;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("mainPage.it")
 public class WizardView extends VerticalLayout {
-    TextField name, dollars;
+    TextField name;
+    NumberField dollars;
     ComboBox<String> position, school, house;
     RadioButtonGroup<String> gender;
     Button prev, create, update, del, next;
@@ -21,8 +24,12 @@ public class WizardView extends VerticalLayout {
         name = new TextField();
         name.setPlaceholder("Full name");
 
-        dollars = new TextField();
+        Div dollarPrefix = new Div();
+        dollarPrefix.setText("$");
+        dollars = new NumberField();
         dollars.setLabel("Dollars");
+        dollars.setPrefixComponent(dollarPrefix);
+        dollars.setWidthFull();
 
         gender = new RadioButtonGroup<>();
         gender.setLabel("Gender");
@@ -38,7 +45,7 @@ public class WizardView extends VerticalLayout {
 
         house = new ComboBox<>();
         house.setItems("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin");
-        house.setPlaceholder("School");
+        house.setPlaceholder("House");
 
         prev = new Button("<<<");
         create = new Button("Create");
@@ -50,7 +57,7 @@ public class WizardView extends VerticalLayout {
         container.add(name, gender, position, dollars, school, house, btn);
         container.setWidth("auto");
         container.setJustifyContentMode(JustifyContentMode.CENTER);
-        container.setAlignItems(Alignment.CENTER);
+        container.setAlignItems(Alignment.STRETCH);
         add(container);
         setSizeFull();
         setAlignItems(Alignment.CENTER);
