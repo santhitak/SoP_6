@@ -19,27 +19,28 @@ public class WizardController {
     @GetMapping("/wizards")
     public ResponseEntity<?> getWiz(){
         List<Wizard> wiz = wizService.getWiz();
-        System.out.println(wiz);
+        System.out.println("Successfully Get All Wizards");
         return ResponseEntity.ok(wiz);
     }
 
     @PostMapping("/addWizard")
     public ResponseEntity<Wizard> addWiz(@RequestBody Wizard wizzy){
         Wizard wiz = wizService.addWiz(wizzy);
-        System.out.println(wizzy);
+        System.out.println("Successfully Add New Wizard, " + wizzy.getName());
         return ResponseEntity.ok(wiz);
     }
 
     @PostMapping("/updateWizard")
     public ResponseEntity<Wizard> updateWiz(@RequestBody Wizard wizzy){
         Wizard wiz = wizService.updateWiz(wizzy);
-        System.out.println(wizzy);
+        System.out.println("Successfully Edit Wizard, " + wizzy.getName());
         return ResponseEntity.ok(wiz);
     }
 
     @PostMapping("/deleteWizard")
     public ResponseEntity<Boolean> delWiz(@RequestBody Wizard wizzy){
         boolean wiz = wizService.delWiz(wizzy);
-        return ResponseEntity.ok(true);
+        System.out.println("Successfully Delete Wizard, " + wizzy.getName());
+        return ResponseEntity.ok(wiz);
     }
 }
